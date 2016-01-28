@@ -134,16 +134,15 @@ app.directive('customChart', function ($window) {
         },
         link: function(scope, element, attrs){
             var block = element[0];
-            scope.$watch(function(){
-                return block.clientWidth;
-            },function(newvalue){
-                scope.chart.resize(newvalue, block.clientHeight);
-            });
 
-            scope.$watch(function(){
-                return block.clientHeight;
-            },function(newvalue){
-                scope.chart.resize(block.clientWidth, newvalue);
+            scope.getDimensions = function () {
+                return {
+                    'h': block.clientHeight,
+                    'w': block.clientWidth
+                };
+            };
+            scope.$watchCollection(scope.getDimensions,function(newvalue){
+                scope.chart.resize(newvalue.w, newvalue.h);
             });
         },
         controller: ['$scope', 'ChartData', '$interval', function($scope, ChartData, $interval) {
