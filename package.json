@@ -1,0 +1,21 @@
+{
+  "name": "angulartask4",
+  "namelower": "angulartask",
+  "version": "0.0.1",
+  "main": "index.html",
+  "description": "AngularJS project. Task 4",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:PavelMenshakov/FinalProject.git"
+  },
+  "author": "Pavel Menshakou",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {}
+}

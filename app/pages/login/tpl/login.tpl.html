@@ -1,0 +1,9 @@
+<div class="jumbotron text-center">
+    <form name="loginForm" class="form-group" novalidate>
+         <div translate="NAME_TEXT"></div><input name="login" class="form-control" type="text" ng-model="user.login" required /><br />
+        <div translate="PASSWORD_TEXT"></div> <input name="password" class="form-control" type="password" ng-model="user.password" /><br />
+        <input ng-disabled="loginForm.$invalid" class="btn btn-default" type="submit" ng-click="login(user)" value="{{'LOGIN_TEXT' | translate}}" />
+        <a ui-sref=".remind" class="btn btn-danger" translate="FORGOT_TEXT"></a>
+    </form>
+</div>
+<ui-view></ui-view>

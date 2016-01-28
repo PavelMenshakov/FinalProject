@@ -1,0 +1,20 @@
+<form name="userForm" class="form-group" novalidate>
+    <div translate="NAME_TEXT"></div> <input name="name" class="form-control" type="text" ng-model="user.name" ng-model-options="{ updateOn: 'blur' }" required /><br />
+				<span class="alert-danger" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+					<span> User name must be more than 3 symbols,<br />only first letter in uppercase of the word,<br />only letters.</span>
+				</span><br />
+	<div translate="EMAIL_TEXT"></div><input email-validation name="email" class="form-control" type="text" ng-model="user.email" /><br />
+				<span class="alert-danger" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+					<span>Email must be in epam.com domain</span>
+				</span><br />
+	<div translate="BIRTHDAY_TEXT"></div><input date-validation name="birthday" class="form-control" type="text" ng-model="user.birthday" /><br />
+				<span class="alert-danger" ng-show="userForm.birthday.$dirty && userForm.birthday.$invalid">
+					<span>Date format is YY-MM-DD or YYYY-MM-DD</span>
+				</span><br />
+	<div translate="AGE_TEXT"></div> <input age-validation name="age" class="form-control" type="number" ng-model="user.age" value="" required /><br />
+				<span class="alert-danger" ng-show="userForm.age.$dirty && userForm.age.$invalid">
+					<span> Age must be between 18 and 65.</span>
+				</span><br />
+    <input class="btn btn-default" type="button" ng-click="reset()" value="{{'RESET_TEXT'| translate}}" />
+    <input ng-disabled="userForm.$invalid" class="btn btn-default" type="submit" ng-click="update(user)" value="{{'SAVE_TEXT'| translate}}" />
+</form>
