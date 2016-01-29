@@ -33,6 +33,10 @@ app.directive('customChart', function ($window) {
         this.arrows = [new RightArrow(this.strokes[0]), new UpArrow(this.strokes[1])];
     };
 
+    Chart.prototype.getLastDotId = function(){
+        return this.dots.length > 0 ? this.dots[this.dots.length - 1].id : 0;
+    };
+
     Chart.prototype.resize = function(width, height){
         this.width = width;
         this.height = height;
@@ -109,7 +113,7 @@ app.directive('customChart', function ($window) {
             stroke: "blue",
             "stroke-width": 3,
             fill: "white"
-        }
+        };
         this.getPreviousData = function(index) {
             return {
                 x: 30 + ((chart.dots.slice(-25)[index - 1].x - chart.minX) * (chart.width - 60)) / chart.distanceX,
@@ -130,7 +134,8 @@ app.directive('customChart', function ($window) {
         scope: {
             chartWtdth: '=width',
             chartHeight: '=height',
-            chartStyle: '=style'
+            chartStyle: '=style',
+            chartModel: '='
         },
         link: function(scope, element, attrs){
             var block = element[0];
@@ -141,13 +146,13 @@ app.directive('customChart', function ($window) {
                     'w': block.clientWidth
                 };
             };
+
             scope.$watchCollection(scope.getDimensions,function(newvalue){
-                scope.chart.resize(newvalue.w, newvalue.h);
+                scope.chartModel.resize(newvalue.w, newvalue.h);
             });
         },
-        controller: ['$scope', 'ChartData', '$interval', function($scope, ChartData, $interval) {
-
-            $scope.chart = new Chart($scope.chartWtdth ? $scope.chartWtdth : 1,
+        controller: ['$scope', function($scope) {
+            $scope.chartModel = new Chart($scope.chartWtdth ? $scope.chartWtdth : 1,
                 $scope.chartHeight ? $scope.chartHeight : 1,
                 $scope.chartStyle);
 
@@ -155,19 +160,6 @@ app.directive('customChart', function ($window) {
                 function(){
                     $scope.$apply();
                 });
-
-            var getData = function(){
-                var dots = $scope.chart.dots,
-                    lastId = dots.length > 0 ? dots[dots.length - 1].id : 0;
-
-                ChartData.getData(lastId).then(function(data){
-                    $scope.chart.setDots(data);
-                });
-            };
-
-            getData();
-
-            $interval(getData, 3000);
         }],
         templateUrl: 'app/directives/chart/src/tpl/chart.tpl.html'
     };

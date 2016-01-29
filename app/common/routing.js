@@ -1,42 +1,70 @@
 "use strict";
 
-angular.module('ajsApp.routing', ['ui.router'])
-    .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
+angular.module('ajsApp.routing', [
+    'ajsApp.services.routing'
+])
+    .config(function(routingRestructuringProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/home');
 
-    $stateProvider.state('navigation',{
-        abstract: true,
-        url: '',
-        templateUrl: 'app/pages/navigation/tpl/navigation.tpl.html',
-        controller: 'navigationCtrl'
-    }).state('navigation.home', {
-        url: '/home',
-        templateUrl: 'app/pages/home/tpl/home.tpl.html'
-    }).state('navigation.chart', {
-        url: '/chart',
-        templateUrl: 'app/pages/chart/tpl/chart.tpl.html'
-    }).state('navigation.tree', {
-        url: '/tree',
-        templateUrl: 'app/pages/tree/src/tpl/tree.tpl.html',
-        controller: 'treeCtrl'
-    }).state('navigation.login', {
-        url: '/login',
-        templateUrl: 'app/pages/login/tpl/login.tpl.html',
-        controller: 'loginCtrl'
-    }).state('navigation.login.remind', {
-        url: '/remind',
-        templateUrl: 'app/pages/login/tpl/login-remind.tpl.html'
-    }).state('navigation.profile', {
-        url: '/profile',
-        templateUrl: 'app/pages/profile/tpl/profile.tpl.html',
-        controller: 'profileCtrl'
-    }).state('navigation.profile.view', {
-        url: '/view',
-        parent: 'navigation.profile',
-        templateUrl: 'app/pages/profile/tpl/profile-view.tpl.html'
-    }).state('navigation.profile.edit', {
-        url: '/edit',
-        parent: 'navigation.profile',
-        templateUrl: 'app/pages/profile/tpl/profile-edit.tpl.html'
-    });
+        var states = {
+            abstract: true,
+            name: 'navigation',
+            templateUrl: 'app/pages/navigation/src/tpl/navigation.tpl.html',
+            controller: 'navigationCtrl',
+            children: [
+                {
+                    name: 'navigation.home',
+                    url: '/home',
+                    templateUrl: 'app/pages/home/src/tpl/home.tpl.html'
+                },
+                {
+                    name: 'navigation.chart',
+                    url: '/chart',
+                    controller: 'chartCtrl',
+                    templateUrl: 'app/pages/chart/src/tpl/chart.tpl.html'
+                },
+                {
+                    name: 'navigation.tree',
+                    url: '/tree',
+                    templateUrl: 'app/pages/tree/src/tpl/tree.tpl.html',
+                    controller: 'treeCtrl'
+                },
+                {
+                    name: 'navigation.login',
+                    url: '/login',
+                    templateUrl: 'app/pages/login/src/tpl/login.tpl.html',
+                    controller: 'loginCtrl',
+                    children: [{
+                        name: 'navigation.login.remind',
+                        url: '/remind',
+                        templateUrl: 'app/pages/login/src/tpl/login-remind.tpl.html'
+                    }]
+                },
+                {
+                    name: 'navigation.profile',
+                    url: '/profile',
+                    abstract: true,
+                    templateUrl: 'app/pages/profile/src/tpl/profile.tpl.html',
+                    controller: 'profileCtrl',
+                    children: [
+                        {
+                            name: 'navigation.profile.view',
+                            url: '/view',
+                            parent: 'navigation.profile',
+                            templateUrl: 'app/pages/profile/src/tpl/profile-view.tpl.html'
+                        },
+                        {
+                            name:'navigation.profile.edit',
+                            url: '/edit',
+                            parent: 'navigation.profile',
+                            templateUrl: 'app/pages/profile/src/tpl/profile-edit.tpl.html'
+                        }
+                    ]
+                }
+
+            ]
+        };
+
+        routingRestructuringProvider.state(states);
+
 });

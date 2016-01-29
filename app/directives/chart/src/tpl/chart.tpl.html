@@ -1,32 +1,32 @@
-<svg ng-attr-width="{{chart.width}}" ng-attr-height="{{chart.height}}">
+<svg ng-attr-width="{{chartModel.width}}" ng-attr-height="{{chartModel.height}}">
     <!-- Axis start-->
-    <line ng-repeat="stroke in chart.strokes" ng-attr-x1="{{stroke.x1}}" ng-attr-y1="{{stroke.y1}}" ng-attr-x2="{{stroke.x2}}" ng-attr-y2="{{stroke.y2}}"
+    <line ng-repeat="stroke in chartModel.strokes" ng-attr-x1="{{stroke.x1}}" ng-attr-y1="{{stroke.y1}}" ng-attr-x2="{{stroke.x2}}" ng-attr-y2="{{stroke.y2}}"
           ng-attr-stroke-width="{{stroke.strokeStyle['stroke-width']}}" ng-attr-stroke="{{stroke.strokeStyle.stroke}}"></line>
 
-    <g ng-repeat="metric in chart.meterageX">
-        <line  ng-attr-x1="{{30 + chart.width/10*$index}}" ng-attr-y1="{{chart.strokes[1].y1 + 3}}" ng-attr-x2="{{30 + chart.width/10*$index}}" ng-attr-y2="{{chart.strokes[1].y1 - 3}}"
-              ng-attr-stroke-width="{{chart.strokes[1].strokeStyle['stroke-width']}}" ng-attr-stroke="{{chart.strokes[1].strokeStyle.stroke}}"></line>
-        <line  ng-attr-x1="{{30 + chart.width/10*$index}}" ng-attr-y1="{{chart.strokes[1].y1 - 3}}" ng-attr-x2="{{30 + chart.width/10*$index}}" ng-attr-y2="{{30}}"
+    <g ng-repeat="metric in chartModel.meterageX">
+        <line  ng-attr-x1="{{30 + chartModel.width/10*$index}}" ng-attr-y1="{{chartModel.strokes[1].y1 + 3}}" ng-attr-x2="{{30 + chartModel.width/10*$index}}" ng-attr-y2="{{chartModel.strokes[1].y1 - 3}}"
+              ng-attr-stroke-width="{{chartModel.strokes[1].strokeStyle['stroke-width']}}" ng-attr-stroke="{{chartModel.strokes[1].strokeStyle.stroke}}"></line>
+        <line  ng-attr-x1="{{30 + chartModel.width/10*$index}}" ng-attr-y1="{{chartModel.strokes[1].y1 - 3}}" ng-attr-x2="{{30 + chartModel.width/10*$index}}" ng-attr-y2="{{30}}"
                stroke-width="1" stroke="grey"></line>
-        <text ng-attr-x="{{10 + chart.width/10*$index}}" ng-attr-y="{{chart.strokes[1].y1 + 15}}">{{metric}}</text>
+        <text ng-attr-x="{{10 + chartModel.width/10*$index}}" ng-attr-y="{{chartModel.strokes[1].y1 + 15}}">{{metric}}</text>
     </g>
 
-    <g ng-repeat="metric in chart.meterageY">
-        <line  ng-attr-x1="{{chart.strokes[0].x1 + 3}}" ng-attr-y1="{{chart.height - 30 - chart.height/10*$index}}"
-               ng-attr-x2="{{chart.strokes[0].x1 - 3}}" ng-attr-y2="{{chart.height - 30 - chart.height/10*$index}}"
-               ng-attr-stroke-width="{{chart.strokes[0].strokeStyle['stroke-width']}}" ng-attr-stroke="{{chart.strokes[0].strokeStyle.stroke}}"></line>
-        <line  ng-attr-x1="{{chart.width - 30}}" ng-attr-y1="{{chart.height - 30 - chart.height/10*$index}}"
-               ng-attr-x2="{{chart.strokes[0].x1 + 3}}" ng-attr-y2="{{chart.height - 30 - chart.height/10*$index}}"
+    <g ng-repeat="metric in chartModel.meterageY">
+        <line  ng-attr-x1="{{chartModel.strokes[0].x1 + 3}}" ng-attr-y1="{{chartModel.height - 30 - chartModel.height/10*$index}}"
+               ng-attr-x2="{{chartModel.strokes[0].x1 - 3}}" ng-attr-y2="{{chartModel.height - 30 - chartModel.height/10*$index}}"
+               ng-attr-stroke-width="{{chartModel.strokes[0].strokeStyle['stroke-width']}}" ng-attr-stroke="{{chartModel.strokes[0].strokeStyle.stroke}}"></line>
+        <line  ng-attr-x1="{{chartModel.width - 30}}" ng-attr-y1="{{chartModel.height - 30 - chartModel.height/10*$index}}"
+               ng-attr-x2="{{chartModel.strokes[0].x1 + 3}}" ng-attr-y2="{{chartModel.height - 30 - chartModel.height/10*$index}}"
                stroke-width="1" stroke="grey"></line>
-        <text ng-attr-x="{{chart.strokes[0].x1 - 30}}" ng-attr-y="{{chart.height - 30 - chart.height/10*$index}}">{{metric}}</text>
+        <text ng-attr-x="{{chartModel.strokes[0].x1 - 30}}" ng-attr-y="{{chartModel.height - 30 - chartModel.height/10*$index}}">{{metric}}</text>
     </g>
 
-    <polygon ng-repeat="arrow in chart.arrows" ng-attr-points="{{arrow.points}}"
+    <polygon ng-repeat="arrow in chartModel.arrows" ng-attr-points="{{arrow.points}}"
           ng-attr-stroke-width="{{arrow.strokeStyle['stroke-width']}}" ng-attr-stroke="{{arrow.strokeStyle.stroke}}"></polygon>
     <!-- Axis end-->
 
     <!--Series start-->
-    <g class="animated-item" ng-repeat="dot in chart.dots | limitTo: -25">
+    <g class="animated-item" ng-repeat="dot in chartModel.dots | limitTo: -25">
     <circle ng-attr-cx="{{dot.getCurrentData().x}}"
             ng-attr-cy="{{dot.getCurrentData().y}}"
             ng-attr-r="{{dot.r}}" ng-attr-stroke="{{dot.dotStyle.stroke}}" ng-attr-fill="{{dot.dotStyle.fill}}"

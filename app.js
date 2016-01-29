@@ -28,12 +28,11 @@ var addDot = function(){
 
 app.get('/api/dots', function(req, res) {
     var lastId = req.param('id'), i = dots.length- 1, result = [];
-    console.log(lastId);
+
     while(lastId < dots[i].id && i > 0){
         result.unshift(dots[i]);
         i--;
     }
-    console.log(result)
     res.json(result);
 });
 
