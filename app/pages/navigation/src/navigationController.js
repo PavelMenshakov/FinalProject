@@ -31,7 +31,7 @@ angular.module('ajsApp.navigation', [
 
         $scope.$on('userLogout', function () {
             var logoutModal = $uibModal.open({
-                templateUrl: 'app/common/modal/tpl/modal-logout.tpl.html',
+                templateUrl: 'app/common/modal/src/tpl/modal-logout.tpl.html',
                 controller: 'modalCtrl',
                 size: 'sm'
             });
@@ -40,7 +40,7 @@ angular.module('ajsApp.navigation', [
 
         $scope.$on('accessDecline', function () {
             var errorModal = $uibModal.open({
-                templateUrl: 'app/common/modal/tpl/modal-error.tpl.html',
+                templateUrl: 'app/common/modal/src/tpl/modal-error.tpl.html',
                 controller: 'modalCtrl',
                 size: 'sm'
             });
