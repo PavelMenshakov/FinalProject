@@ -11,6 +11,7 @@
     "angular-translate-loader-static-files": "~2.8.1",
     "angular-md5": "~0.1.10",
     "angular-bootstrap": "~1.1.0",
-    "angular-animate": "~1.4.9"
+    "angular-animate": "~1.4.9",
+    "angular-sanitize": "^1.4.9"
   }
 }

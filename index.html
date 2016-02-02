@@ -1,8 +1,9 @@
 <html ng-app="ajsApp">
 <head>
-
+    <link rel="shortcut icon" href="app/css/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/css/style.css">
+    <title translate="HOME_TEXT_DESCRIPTION"></title>
 
     <script src="modules/angular/angular.js"></script>
     <script src="modules/angular-md5/angular-md5.min.js"></script>
@@ -12,21 +13,36 @@
     <script src="modules/angular-translate/angular-translate.min.js"></script>
     <script src="modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
     <script src="modules/angular-animate/angular-animate.min.js"></script>
-    <script src="app/services/routingRestructuring.js"></script>
-    <script src="app/directives/tree/src/tree.js"></script>
-    <script src="app/services/dataServices.js"></script>
-    <script src="app/services/recursionFix.js"></script>
-    <script src="app/directives/directives.js"></script>
-    <script src="app/directives/chart/src/chart.js"></script>
-    <script src="app/services/services.js"></script>
+    <script src="modules/angular-sanitize/angular-sanitize.min.js"></script>
+
+    <script src="app/main.js"></script>
+    <script src="app/config.js"></script>
+
+    <script src="app/services/src/routingRestructuring.js"></script>
+    <script src="app/services/src/chartDataService.js"></script>
+    <script src="app/services/src/recursionFix.js"></script>
+    <script src="app/services/src/authorization.js"></script>
+    <script src="app/services/src/treeDataService.js"></script>
+    <script src="app/services/ajsapp.services.js"></script>
+
+    <script src="app/directives/src/ageValidation/src/ageValidation.js"></script>
+    <script src="app/directives/src/dateValidation/src/dateValidation.js"></script>
+    <script src="app/directives/src/emailValidation/src/emailValidation.js"></script>
+    <script src="app/directives/src/userName/src/userName.js"></script>
+    <script src="app/directives/src/chart/src/chart.js"></script>
+    <script src="app/directives/src/tree/src/tree.js"></script>
+    <script src="app/directives/ajsapp.directives.js"></script>
+
+    <script src="app/pages/src/chart/src/chartController.js"></script>
+    <script src="app/pages/src/login/src/loginController.js"></script>
+    <script src="app/pages/src/tree/src/treeController.js"></script>
+    <script src="app/pages/src/profile/src/profileController.js"></script>
+    <script src="app/pages/src/navigation/src/navigationController.js"></script>
+    <script src="app/pages/ajsapp.pages.js"></script>
+
     <script src="app/common/routing.js"></script>
     <script src="app/common/modal/src/modalController.js"></script>
-    <script src="app/pages/chart/src/chartController.js"></script>
-    <script src="app/pages/login/src/loginController.js"></script>
-    <script src="app/pages/tree/src/treeController.js"></script>
-    <script src="app/pages/profile/src/profileController.js"></script>
-    <script src="app/pages/navigation/src/navigationController.js"></script>
-    <script src="app/main.js"></script>
+
 </head>
 <body>
 <div ui-view></div>

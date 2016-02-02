@@ -1,27 +1,36 @@
 "use strict";
 
-var app = angular.module('ajsApp',[
-    'ajsApp.recFix',
-    'ajsApp.services.routing',
-    'ajsApp.services.data',
-    'pascalprecht.translate',
-    'angular-md5',
-    'ngAnimate',
+var namespace = function(namespace) {
+    var parts = namespace.split('.'),
+        parent = window;
+
+    for (var i = 0; i < parts.length; i++) {
+        var part = parts[i];
+
+        if (parent[part] === undefined) {
+            parent[part] = {};
+        }
+
+        parent = parent[part];
+    }
+
+    return parent;
+};
+
+namespace('ajsApp');
+
+ajsApp.$module = angular.module('ajsApp',[
     'ui.bootstrap',
-    'ajsApp.routing',
+    'ngSanitize',
+    'ui.router',
+    'angular-md5',
+    'pascalprecht.translate',
+    'ngAnimate',
     'ajsApp.directives',
-    'ajsApp.services',
-    'ajsApp.login',
-    'ajsApp.profile',
-    'ajsApp.navigation',
     'ajsApp.modal',
-    'ajsApp.directives.chart',
-    'ajsApp.pages.chart',
-    'ajsApp.tree'
-]).config(['$translateProvider', function ($translateProvider) {
-    $translateProvider.useStaticFilesLoader({
-        prefix: 'lang/lang_',
-        suffix: '.json'
-    });
-    $translateProvider.preferredLanguage('en');
-}]);
+    'ajsApp.services',
+    'ajsApp.routing',
+    'ajsApp.pages'
+]);
+
+
