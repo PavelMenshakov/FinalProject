@@ -1,5 +1,4 @@
-var protractor = require("gulp-protractor").protractor,
-    gulp = require('gulp');
+var gulp = require('gulp');
 
 gulp.task('webdriver_update', function (cb) {
     return require('gulp-protractor').webdriver_update(cb)
@@ -23,6 +22,7 @@ gulp.task('run-e2e', function (done) {
         console.log(err);
         console.log(stdErr);
         console.log(stdOut);
+        server.http.close();
         done();
     });
     child.stdout.pipe(process.stdout);

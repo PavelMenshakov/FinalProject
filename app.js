@@ -5,6 +5,7 @@ var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
 
+
 app.use(favicon(__dirname + '/app/css/img/favicon.ico'));
 app.use('/app', express.static(__dirname + '/app'));
 app.use('/lang', express.static(__dirname + '/lang'));
@@ -14,6 +15,13 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+var serverInstance = {
+    app: app
+};
+var appListen = app.listen;
+app.listen = function() {
+    return serverInstance.http = appListen.apply(this, arguments);
+};
 
 
 var dots = [
@@ -141,8 +149,8 @@ app.get('/api/tree',function(req,res){
     res.json(data);
 });
 
+app.listen(3000);
 
-app.listen(3000, function(){
-    console.log("app start on 3000 port");
-    setInterval(addDot, 2000)
-});
+console.log('3000 port');
+
+module.exports = serverInstance;
