@@ -3,8 +3,7 @@
 var ln = namespace('ajsApp.pages.login');
 ln.$module = angular.module('ajsApp.pages.login', [
         'ajsApp.directives',
-        'ajsApp.services',
-
+        'ajsApp.services'
     ])
     .controller('loginCtrl', [ '$scope', '$state','Authorization', '$translate',
         function($scope, $state, Authorization, $translate) {

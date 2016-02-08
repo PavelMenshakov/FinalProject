@@ -140,7 +140,9 @@ app.get('/api/tree',function(req,res){
 });
 
 
-app.listen(3000, function(){
+var server = app.listen(3000, function(){
     console.log("app start on 3000 port");
-    setInterval(addDot, 2000)
+    setInterval(addDot, 2000);
 });
+
+module.exports.http = server;

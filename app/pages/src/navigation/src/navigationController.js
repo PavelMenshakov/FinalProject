@@ -3,7 +3,8 @@
 var nn = namespace('ajsApp.pages.navigation');
 nn.$module = angular.module('ajsApp.pages.navigation', [
     'ajsApp.modal'
-]).controller('navigationCtrl', ['$scope', '$translate', '$uibModal', 'Authorization', '$state','$http', '$timeout',
+]).controller('navigationCtrl', ['$scope','$translate','$uibModal', 'Authorization',
+    '$state', '$http', '$timeout',
     function($scope, $translate, $uibModal, Authorization, $state, $http, $timeout) {
         var sessionTrack;
         $scope.changeLang = function (lang) {
@@ -17,12 +18,12 @@ nn.$module = angular.module('ajsApp.pages.navigation', [
         $scope.isAutorised = Authorization.isAccepted;
 
         $scope.isLoading = function () {
-            return $http.pendingRequests.length > 0;
+            //return $http.pendingRequests.length > 0;
         };
 
         $scope.logout = function () {
-            Authorization.logout().then(function(resp){
-                if(resp) {
+            Authorization.logout().then(function (resp) {
+                if (resp) {
                     var logoutModal = $uibModal.open({
                         templateUrl: 'app/common/modal/src/tpl/modal-logout.tpl.html',
                         controller: 'modalCtrl',
@@ -30,20 +31,22 @@ nn.$module = angular.module('ajsApp.pages.navigation', [
                     });
                     $state.go('navigation.home');
                 }
-            }, function(reason){
+            }, function (reason) {
                 console.log(reason);
             });
         };
 
         $scope.$on('$stateChangeSuccess', function () {
-            if (sessionTrack) {
-                $timeout.cancel(sessionTrack);
-            }
-            sessionTrack = $timeout(function () {
-                if ($scope.isAutorised()) {
-                    $scope.logout();
+            if ($scope.isAutorised()) {
+                if (sessionTrack) {
+                    $timeout.cancel(sessionTrack);
                 }
-            }, 20000);
+                sessionTrack = $timeout(function () {
+                    if ($scope.isAutorised()) {
+                        $scope.logout();
+                    }
+                }, 20000);
+            }
         });
     }
 ]);
