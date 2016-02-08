@@ -22,8 +22,16 @@ cn.$module = angular.module('ajsApp.services.routing',[
             return restructedStates;
         };
 
-        var newStates = restructStates(states),
+        var newStates = [],
             lastState;
+
+        if(states.length){
+            states.forEach(function(value){
+                newStates = newStates.concat(restructStates(value));
+            });
+        } else {
+            newStates = restructStates(states);
+        }
 
         newStates.forEach(function(state){
             lastState = lastState ? lastState.state(state) : $stateProvider.state(state);
