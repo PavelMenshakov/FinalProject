@@ -16,12 +16,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
-    "gulp": "^3.9.0",
-    "gulp-jasmine": "^2.2.1",
-    "gulp-protractor": "^2.1.0",
-    "jasmine-reporters": "^2.1.1",
-    "nconf": "^0.8.3",
-    "serve-favicon": "^2.3.0"
+    "gulp": "3.8.11",
+    "gulp-jasmine": "2.2.1",
+    "gulp-protractor": "2.1.0",
+    "jasmine-reporters": "2.1.1",
+    "nconf": "0.8.4"
   },
   "devDependencies": {}
 }

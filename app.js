@@ -3,9 +3,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var favicon = require('serve-favicon');
 
-app.use(favicon(__dirname + '/app/css/img/favicon.ico'));
 app.use('/app', express.static(__dirname + '/app'));
 app.use('/lang', express.static(__dirname + '/lang'));
 app.use('/data', express.static(__dirname + '/data'));

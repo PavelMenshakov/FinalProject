@@ -1,9 +1,11 @@
+"use strict";
+
 exports.config = {
-    framework: "jasmine2",
+    framework: 'jasmine2',
     allScriptsTimeout: 30000,
     includeStackTrace: true,
     getPageTimeout: 30000,
-    //seleniumServerJar: 'D:/Projects/FinalProject/node_modules/gulp-protractor/node_modules/protractor/selenium/selenium-server-standalone-2.48.2.jar',
+    seleniumServerJar: 'D:/Projects/FinalProject/node_modules/gulp-protractor/node_modules/protractor/selenium/selenium-server-standalone-2.48.2.jar',
     jasmineNodeOpts: {
         defaultTimeoutInterval: 120000
     },

@@ -5,7 +5,9 @@ rn.$module = angular.module('ajsApp.routing', [
     'ajsApp.services'
 ])
     .config(function(routingRestructuringProvider, $urlRouterProvider) {
+
         $urlRouterProvider.otherwise('/home');
+
 
         var states = {
             abstract: true,
